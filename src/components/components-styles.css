@@ -1,0 +1,29 @@
+.button-primary {
+    background-color: #f069f3;
+    border: none;
+    border-radius: 5px;
+    min-width: 10px;
+    height: 30px;
+    margin: 10px;
+    color: white;
+}
+
+.button-primary:hover {
+    background-color: #d859da;
+    cursor: pointer;
+}
+
+.button-secondary {
+    background-color: #e9e7e9;
+    border: none;
+    border-radius: 5px;
+    min-width: 10px;
+    height: 30px;
+    margin: 10px;
+    color: rgb(69, 69, 69);
+}
+
+.button-secondary:hover {
+    background-color: #d8d6d8;
+    cursor: pointer;
+}
