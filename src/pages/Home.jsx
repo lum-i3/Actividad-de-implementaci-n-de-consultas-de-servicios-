@@ -1,5 +1,5 @@
-import { Link } from "react-router-dom";
-import Button from "../components/Button";
+
+import { Container, Row, Col } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
 function Home () {
@@ -12,8 +12,6 @@ function Home () {
     return (
         <div>
             <h1>Home</h1>
-            <Link to="/login">Login</Link>
-            <Button text="Login" action={goToLogin} />
         </div>
     );
 }
