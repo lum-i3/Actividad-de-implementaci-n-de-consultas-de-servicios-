@@ -1,9 +1,11 @@
 import { useState } from "react";
 import Button from "../components/Button";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../security/authContext";
 
 function Login () {
     const navigate = useNavigate();
+    const {login} = useAuth()
     
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
@@ -20,7 +22,12 @@ function Login () {
         }
 
         alert(`El usuario es ${username} y la contraseña es ${password}`);
-        navigate("/dashboard");
+
+        if(login(username,password)){
+            navigate("/dashboard");
+        }{
+            alert("Invalid credentials");
+        }
     }
 
     return (

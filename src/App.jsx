@@ -5,15 +5,14 @@ import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import Profile from "./pages/Profile";
 import Page404 from "./pages/Page404";
-import { useState } from "react";
 import Users from "./pages/users/Users";
 import UserList from "./pages/users/UserList";
 import UserDetail from "./pages/users/UserDetail";
 import ProtectedRoutes from "./routes/ProtectedRoutes";
+import { useAuth } from "./security/authContext";
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(true)
-  const rol = "admin";
+  const {isLoggedIn, session} = useAuth()
 
   return (
     <>
@@ -31,7 +30,7 @@ function App() {
             </Route>
 
             {/* Ruta protegida por un componente  AQUI SOLO ENTRA EL ADMIN*/}
-            <Route element={<ProtectedRoutes isAllowed={rol === "admin"}/>}>
+            <Route element={<ProtectedRoutes isAllowed={session.username === "admin"}/>}>
               <Route path="/profile" element={<Profile/>} />
             </Route>
 
