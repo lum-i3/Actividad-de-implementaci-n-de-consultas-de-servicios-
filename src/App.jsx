@@ -12,7 +12,11 @@ import ProtectedRoutes from "./routes/ProtectedRoutes";
 import { useAuth } from "./security/authContext";
 
 function App() {
-  const {isLoggedIn, session} = useAuth()
+  const {isLoggedIn, session, isLoading} = useAuth()
+
+
+  if (isLoading) return null
+
 
   return (
     <>
@@ -34,7 +38,6 @@ function App() {
               <Route path="/profile" element={<Profile/>} />
             </Route>
 
-            <Route path="*" element={<Page404/>} />
           </Routes>
         ): (
           // rutas si no tengo sesion

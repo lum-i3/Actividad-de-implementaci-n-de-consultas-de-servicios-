@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { useAuth } from "../security/authContext";
 
 function Dashboard () {
@@ -10,6 +11,7 @@ function Dashboard () {
             onClick={logout}>
                 Cerrar sesión
             </button>
+            <Link to="/list">Users</Link>
         </div>
     );
 }

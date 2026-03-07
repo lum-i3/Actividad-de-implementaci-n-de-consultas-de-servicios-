@@ -3,6 +3,7 @@ import { AuthContext } from "./authContext";
 
 function AuthProvider({children}){
     const [session, setSession] = useState(null)
+    const [isLoading, setIsLoading] = useState(true)
     
     useEffect(()=>{
         const session = localStorage.getItem("session")
@@ -10,14 +11,15 @@ function AuthProvider({children}){
         if(session){
             setSession(JSON.parse(session))
         }
-        
+
+        setIsLoading(false)
+
     },[])
 
     const login = (username, password)=>{
         if(username === "admin" && password === "1234"){
 
             setSession({username:username})
-
             localStorage.setItem("session", JSON.stringify({username}))
 
             return true
@@ -31,9 +33,10 @@ function AuthProvider({children}){
         setSession(null)
     }
 
+
     return (
         <AuthContext.Provider value={{login, logout, session,
-            isLoggedIn: session !== null
+            isLoggedIn: session !== null, isLoading
         }}>
             {children}
         </AuthContext.Provider>
