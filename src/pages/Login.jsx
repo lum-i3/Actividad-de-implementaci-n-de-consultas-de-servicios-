@@ -2,6 +2,7 @@ import { useState } from "react";
 import Button from "../components/Button";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../security/authContext";
+import Swal from "sweetalert2"
 
 function Login () {
     const navigate = useNavigate();
@@ -10,25 +11,30 @@ function Login () {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
 
-    const handleLogin = () => {
-        if (username === "" || username === null){
-            alert("Usuario es requerido");
-            return;
-        }
+    const handleLogin = async () => {
 
-        if (password === "" || password === null){
-            alert("Contraseña es requerida");
-            return;
-        }
-
-        alert(`El usuario es ${username} y la contraseña es ${password}`);
-
-        if(login(username,password)){
-            navigate("/dashboard");
-        }{
-            alert("Invalid credentials");
-        }
+    if (username === ""){
+        alert("Usuario es requerido");
+        return;
     }
+
+    if (password === ""){
+        alert("Contraseña es requerida");
+        return;
+    }
+
+    const success = await login(username,password)
+
+    if(success){
+        navigate("/dashboard")
+    }else{
+        Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: "Credenciales incorrectas"
+        })
+    }
+}
 
     return (
         <div>

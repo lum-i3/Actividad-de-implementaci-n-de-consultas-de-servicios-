@@ -16,17 +16,32 @@ function AuthProvider({children}){
 
     },[])
 
-    const login = (username, password)=>{
-        if(username === "admin" && password === "1234"){
+    const login = async (username, password)=>{
 
-            setSession({username:username})
-            localStorage.setItem("session", JSON.stringify({username}))
+    const response = await fetch('https://fakestoreapi.com/auth/login',{
+        method:'POST',
+        headers:{
+            'Content-Type':'application/json'
+        },
+        body: JSON.stringify({
+            username: username,
+            password: password
+        })
+    })
 
-            return true
-        } else {
-            return false
-        }
+    const data = await response.json()
+
+    if(data.token){
+        const newSession = {username, token: data.token}
+
+        setSession(newSession)
+        localStorage.setItem("session", JSON.stringify(newSession))
+
+        return true
     }
+
+    return false
+}
 
     const logout = () => {
         localStorage.removeItem("session")

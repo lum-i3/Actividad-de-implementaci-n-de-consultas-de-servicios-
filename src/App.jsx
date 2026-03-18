@@ -10,6 +10,8 @@ import UserList from "./pages/users/UserList";
 import UserDetail from "./pages/users/UserDetail";
 import ProtectedRoutes from "./routes/ProtectedRoutes";
 import { useAuth } from "./security/authContext";
+import CreateUser from "./pages/users/CreateUser";
+
 
 function App() {
   const {isLoggedIn, session, isLoading} = useAuth()
@@ -31,6 +33,7 @@ function App() {
             <Route element={<Users/>}>
               <Route path="list" element={<UserList/>} />
               <Route path="find/:id" element={<UserDetail/>} />
+              <Route path="/createUser" element={<CreateUser/>} /> 
             </Route>
 
             {/* Ruta protegida por un componente  AQUI SOLO ENTRA EL ADMIN*/}

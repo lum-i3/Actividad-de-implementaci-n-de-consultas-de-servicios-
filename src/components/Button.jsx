@@ -1,5 +1,5 @@
 const StylesButtonPrimary = {
-  backgroundColor: "#f069f3",
+  backgroundColor: "#312eb7",
   border: "none",
   borderRadius: "5px",
   widthMinimum: "10px",
